@@ -1,26 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <MultiSelect
+      v-model="selectedValues"
+      :options="options"
+      optionLabel="name"
+      placeholder="Выберите значения"
+      @change="onSelectionChange"
+      aria-label="Options"
+    />
+    <Button v-if="selectedValues.length" @click="clearSelection">✖</Button>
+  </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { ref } from 'vue';
+import MultiSelect from 'primevue/multiselect';
+import Button from 'primevue/button';
+const options = ref([
+  { name: 'Значение 1', code: 'VAL1' },
+  { name: 'Значение 2', code: 'VAL2' },
+  { name: 'Значение 3', code: 'VAL3' },
+  { name: 'Значение 4', code: 'VAL4' },
+]);
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+const selectedValues = ref([]);
+
+// Функция для сброса выбранных значений
+function clearSelection() {
+  selectedValues.value = [];
+}
+
+// Функция для обработки изменений выбора (опционально)
+function onSelectionChange() {
+  // Здесь можно добавить логику, выполняемую при изменении выбранных значений
+  console.log('Выбранные значения:', selectedValues.value);
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
