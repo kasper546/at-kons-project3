@@ -25,14 +25,11 @@ const options = ref([
 
 const selectedValues = ref([]);
 
-// Функция для сброса выбранных значений
 function clearSelection() {
   selectedValues.value = [];
 }
 
-// Функция для обработки изменений выбора (опционально)
 function onSelectionChange() {
-  // Здесь можно добавить логику, выполняемую при изменении выбранных значений
   console.log('Выбранные значения:', selectedValues.value);
 }
 </script>
